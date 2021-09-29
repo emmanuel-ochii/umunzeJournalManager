@@ -1,0 +1,57 @@
+@media screen and (max-width: 768px)  {
+    .authLogo{
+        display: none;
+    }
+}
+@media screen and (min-width: 768px)  {
+    .authLogoMobile{
+        display: none;
+    }
+}
+.bg-umunzeBrown{
+    background-color: rgba(183,81,13,0.5) !important;
+}
+.text-umunze-green{
+    color: rgb(48,156,144);
+}
+.text-umunze-brown{
+    color: rgb(183,81,13);
+}
+.btn-umunze-brown {
+    color: #fff;
+    background-color: rgb(183,81,13);
+    border-color: rgb(183,81,13);
+}
+.    {
+    color: #fff;
+    background-color: rgb(48,156,144);
+    border-color: rgb(48,156,144);
+}
+#page-container.page-header-glass.page-header-fixed.page-header-scroll.page-header-dark #page-header {
+    background-color: rgba(48,156,144,.9);
+    box-shadow: none;
+    -webkit-backdrop-filter: blur(1rem);
+    backdrop-filter: blur(1rem);
+}
+.btn-outline-quick-links {
+    color: rgb(48,156,144);
+    border-color: rgb(48,156,144);
+    width: 80%;
+}
+.btn-outline-quick-links:hover{color:#fff;background-color:rgb(183,81,13);border-color:rgb(183,81,13)}
+.btn-outline-primary.focus,
+.btn-outline-primary:focus{box-shadow:0 0 0 .2rem rgba(0,123,255,.5)
+}
+.bg-image{
+    background-image: url('../media/janko-ferlic-sfL_QOnmy00-unsplash.jpeg') !important;
+}
+
+.login-bg{
+    background-image: url('../media/photos/photo22@2x.jpg') !important;
+}
+
+.bg-imageProfile{
+    background-image: url('../media/bg/photo17@2x.jpg') !important;
+    background-position: 0 50%;
+    background-size: cover;
+}
