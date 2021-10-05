@@ -5,7 +5,7 @@
 <!-- Main Container -->
 <main id="main-container">
     <!-- Hero -->
-    <div class="bg-image">
+    <div class="bg-imageHero">
         <div class="bg-umunzeBrown">
           <div class="content content-full content-top">
             <h1 class="py-5 text-white text-center">Welcome To Federal College of Education (Technical) Umunze Journal Manager</h1>
@@ -18,15 +18,28 @@
     <div class="row g-0 flex-md-grow-1">
       <div class="col-md-4 col-lg-5 col-xl-3 order-md-1 bg-body-extra-light">
         <div class="content p-0">
-          <!-- Toggle Settings -->
+          <!-- Toggle Journal Sidebar For mobile-->
           <div class="d-md-none p-3">
             <!-- Class Toggle, functionality initialized in Helpers.dmToggleClass() -->
             <button type="button" class="btn w-100 btn-alt-info" data-toggle="class-toggle" data-target="#side-content" data-class="d-none">
-              Settings
+              Journal Sidebar
             </button>
           </div>
-          <!-- END Toggle Settings -->
+          <!-- END Toggle Journal Sidebar For mobile-->
+          @if ($errors->any())
+            <div class="alert alert-danger">
+                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+          @endif
 
+
+          <form action="{{ route('journal.store') }}" method="POST">
+            @csrf
           <!-- Settings -->
           <div id="side-content" class="d-none d-md-block push">
             <div id="settings-accordion" role="tablist" aria-multiselectable="true" class="mt-4">
@@ -37,19 +50,20 @@
                 <div id="settings-accordion_s1" class="collapse show" role="tabpanel" aria-labelledby="settings-accordion_h1" data-bs-parent="#settings-accordion">
                   <div class="block-content">
                     <div class="row mb-4">
-                      <label class="col-sm-4 col-form-label" for="example-wp-visibility">Visibility</label>
+                      <label class="col-sm-4 col-form-label" for="visibility">Visibility</label>
                       <div class="col-sm-8">
-                        <select class="form-select" id="example-wp-visibility" name="example-wp-visibility" disabled>
-                          <option value="1" selected>Public</option>
+                        <select class="form-select" id="visibility" name="visibily" disabled>
+                          <option value="Public" selected>Public</option>
                         </select>
                       </div>
                     </div>
                     <div class="row mb-4">
-                      <label class="col-sm-4 col-form-label" for="example-wp-author">Author</label>
+                      <label class="col-sm-4 col-form-label" for="author">Author</label>
                       <div class="col-sm-8">
-                        <select class="form-select" id="example-wp-author" name="example-wp-author" disabled>
-                          <option value="1">Admin</option>
-                        </select>
+                        {{-- <select class="form-select" id="author" name="author" disabled>
+                          <option value="Admin" selected>Admin</option>
+                        </select> --}}
+                        <input type="text" name="author" id="author" />
                       </div>
                     </div>
                   </div>
@@ -63,28 +77,16 @@
                   <div class="block-content block-content-full">
                     <div class="mb-4">
                       <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="example-wp-cat-1" name="example-wp-cat-1">
-                        <label class="form-check-label" for="example-wp-cat-1">Finace</label>
+                        <input type="checkbox" class="form-check-input" value="category" id="category" name="category">
+                        <label class="form-check-label" for="finance">Finace</label>
                       </div>
                       <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="example-wp-cat-2" name="example-wp-cat-2">
-                        <label class="form-check-label" for="example-wp-cat-2">Academic</label>
+                        <input type="checkbox" class="form-check-input" value="1" id="academic" name="academic">
+                        <label class="form-check-label" for="academic">Academic</label>
                       </div>
                       <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="example-wp-cat-3" name="example-wp-cat-3">
-                        <label class="form-check-label" for="example-wp-cat-3">Industry</label>
-                      </div>
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="example-wp-cat-4" name="example-wp-cat-4">
-                        <label class="form-check-label" for="example-wp-cat-4">Political</label>
-                      </div>
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="example-wp-cat-5" name="example-wp-cat-5">
-                        <label class="form-check-label" for="example-wp-cat-5"> IT/Technology</label>
-                      </div>
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="example-wp-cat-7" name="example-wp-cat-7">
-                        <label class="form-check-label" for="example-wp-cat-7">Others</label>
+                        <input type="checkbox" class="form-check-input" value="2" id="others" name="others">
+                        <label class="form-check-label" for="others">Others</label>
                       </div>
                     </div>
                   </div>
@@ -98,7 +100,9 @@
                   <div class="block-content block-content-full">
                     <!-- Dropzone (functionality is auto initialized by the plugin itself in js/plugins/dropzone/dropzone.min.js) -->
                     <!-- For more info and examples you can check out http://www.dropzonejs.com/#usage -->
-                    <form class="dropzone" action="be_forms_plugins.html"></form>
+                    {{-- <form class="dropzone" action="be_forms_plugins.html"></form> --}}
+                    <input class="form-control" type="file" name="featured_img" id="featured_img">
+
                   </div>
                 </div>
               </div>
@@ -124,38 +128,38 @@
                 </button>
               </div>
               <div>
-                <a class="btn btn-sm btn-alt-info" href="javascript:void(0)">Publish To Editor For Preview</a>
+                <button type="submit" class="btn btn-sm btn-alt-info">Publish To Editor For Review</button>
               </div>
             </div>
             <div class="block-content">
-              <form action="" method="POST">
+
                 <div class="mb-3">
-                  <input type="text" class="form-control py-3" id="authorName" name="authorName" placeholder="Author Name...">
+                  <input type="text" class="form-control py-3" id="author_name" name="author_name" placeholder="Author Name...">
                 </div>
                 <div class="mb-3">
-                    <input type="email" class="form-control py-3" id="authorEmail" name="authorEmail" placeholder="Email...">
+                    <input type="email" class="form-control py-3" id="author_email" name="author_email" placeholder="Email...">
                 </div>
                 <div class="mb-3">
-                    <input type="text" class="form-control py-3" id="bookTitle" name="bookTitle" placeholder="Title...">
+                    <input type="text" class="form-control py-3" id="title" name="title" placeholder="Title...">
                 </div>
                 <div class="mb-3">
                   <!-- CKEditor (js-ckeditor id is initialized in Helpers.jsCkeditor()) -->
-                  <textarea class="js-simplemde" id="simplemde" name="simplemde" placeholder="Enter Abstract Here..."></textarea>
+                  <textarea class="js-simplemde" id="abstract" name="abstract" placeholder="Enter Abstract Here..."></textarea>
                 </div>
                 <div class="mb-3">
-                    <input class="form-control" type="file" id="example-file-input">
+                    <input class="form-control" type="file" name="journal" id="journal">
                   </div>
                 <div class="mb-3">
-                    <input type="text" class="form-control py-3" id="instituition" name="instituition" placeholder="Instituition...">
+                    <input type="text" class="form-control py-3" id="institution" name="institution" placeholder="Instituition...">
                 </div>
                 <div class="mb-3">
-                    <input type="email" class="form-control py-3" id="instituitionEmail" name="instituitionEmail" placeholder="Instituition Email...">
+                    <input type="email" class="form-control py-3" id="institution_email" name="institution_email" placeholder="Instituition Email...">
                 </div>
                 <div class="mb-3">
-                    <input type="text" class="form-control py-3" id="affilation" name="affilation" placeholder="Affilation...">
+                    <input type="text" class="form-control py-3" id="affiliation" name="affiliation" placeholder="Affilation...">
                 </div>
                 <div class="mb-3">
-                    <select class="form-select" id="example-select" name="example-select">
+                    <select class="form-select" id="example-select" name="country">
                       <option selected="" class="text-grey">Select Country</option>
                       <option value="1">Nigeria </option>
                       <option value="2">Others </option>
@@ -164,13 +168,18 @@
                 <div class="mb-4">
                     <input type="text" class="form-control py-3" id="doi" name="doi" placeholder="DOI...">
                 </div>
+                <div class="mb-4">
+                    <input type="text" class="form-control py-3" id="issn" name="issn" placeholder="ISSN...">
+                </div>
 
-              </form>
+
             </div>
           </div>
+
         </div>
         <!-- END Main Content -->
       </div>
+    </form>
     </div>
     <!-- END Page Content -->
   </main>
@@ -192,6 +201,15 @@
 
 <!-- Page JS Helpers (SimpleMDE + CKEditor plugins) -->
 <script>Dashmix.helpersOnLoad(['js-ckeditor', 'js-simplemde']);</script>
+
+<!-- jQuery (required for BS Notify plugin) -->
+<script src="{{asset('/js/lib/jquery.min.js')}}"></script>
+
+<!-- Page JS Plugins -->
+<script src="{{asset('/js/plugins/bootstrap-notify/bootstrap-notify.min.js')}}"></script>
+
+<!-- Page JS Helpers (BS Notify Plugin) -->
+<script>Dashmix.helpersOnLoad(['jq-notify']);</script>
 
 <!-- Page JS Helpers (CKEditor + Select2 plugins) -->
 <script>

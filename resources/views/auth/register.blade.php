@@ -56,7 +56,7 @@
                         <img class="authLogo" src="{{asset('/media/logo/bida_logo.png')}}" alt="logo"  width="550"/>
                         <img class="authLogoMobile mb-2" src="{{asset('/media/logo/rsz_bida_logo.png')}}" alt="logo"  width="200"/>
                     </div>
-                  <a class="link-fx fw-bold fs-1" href="login.html">
+                  <a class="link-fx fw-bold fs-1" href="{{route('welcome')}}">
                     <span class="text-umunze-green">Journal</span><span class="text-umunze-brown">Manager</span>
                   </a>
                   <p class="text-uppercase fw-bold fs-sm text-muted">Create New Account</p>
@@ -66,19 +66,38 @@
                 <!-- Sign Up Form -->
                 <div class="row g-0 justify-content-center">
                   <div class="col-sm-8 col-xl-6">
-                    <form class="js-validation-signup" action="be_pages_auth_all.html" method="POST">
+                    <form class="js-validation-signup" action="{{ route('register') }}" method="POST">
+                        @csrf
                       <div class="py-3">
                         <div class="mb-4">
-                          <input type="text" class="form-control form-control-lg form-control-alt" id="signup-username" name="signup-username" placeholder="Username">
+                          <input type="text" class="form-control form-control-lg form-control-alt @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Enter Your Username">
+
+                          @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="mb-4">
-                          <input type="email" class="form-control form-control-lg form-control-alt" id="signup-email" name="signup-email" placeholder="Email">
+                          <input type="email" class="form-control form-control-lg form-control-alt @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Enter Email...">
+
+                          @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="mb-4">
-                          <input type="password" class="form-control form-control-lg form-control-alt" id="signup-password" name="signup-password" placeholder="Password">
+                          <input type="password" class="form-control form-control-lg form-control-alt @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
+
+                          @error('password')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                              </span>
+                          @enderror
                         </div>
                         <div class="mb-4">
-                          <input type="password" class="form-control form-control-lg form-control-alt" id="signup-password-confirm" name="signup-password-confirm" placeholder="Password Confirm">
+                          <input type="password" class="form-control form-control-lg form-control-alt" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
                         </div>
                         <div class="mb-4">
                           <div class="form-check">
@@ -92,11 +111,11 @@
                           <i class="fa fa-fw fa-plus opacity-50 me-1"></i> Sign Up
                         </button>
                         <p class="mt-3 mb-0 d-lg-flex justify-content-lg-between">
-                          <a class="btn btn-sm btn-alt-secondary d-block d-lg-inline-block mb-1" href="login.html">
+                          <a class="btn btn-sm btn-alt-secondary d-block d-lg-inline-block mb-1" href="{{route('login')}}">
                             <i class="fa fa-sign-in-alt opacity-50 me-1"></i> Sign In
                           </a>
-                          <a class="btn btn-sm btn-alt-secondary d-block d-lg-inline-block mb-1" href="#">
-                            <i class="fa fa-reply opacity-50 me-1"></i> Go Back
+                          <a class="btn btn-sm btn-alt-secondary d-block d-lg-inline-block mb-1" href="{{route('welcome')}}">
+                            <i class="fa fa-home opacity-50 me-1"></i> Go Home
                           </a>
                         </p>
                       </div>

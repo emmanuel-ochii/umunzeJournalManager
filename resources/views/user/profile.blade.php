@@ -1,4 +1,4 @@
-@extends('editor.layout.editor')
+@extends('layouts.landing')
 
 @section('content')
 

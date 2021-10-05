@@ -21,6 +21,7 @@ class UploadJournal extends Migration
             $table->string('abstract');
             $table->string('journal');
             $table->string('doi');
+            $table->string('issn');
             $table->string('institution');
             $table->string('institution_email');
             $table->string('affiliation');

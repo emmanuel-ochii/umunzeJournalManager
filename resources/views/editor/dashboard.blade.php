@@ -63,7 +63,7 @@
                     <div class="mb-3">
                       <i class="fa fa-book-open fa-3x text-xinspire"></i>
                     </div>
-                    <div class="fs-4 fw-semibold">120 Journal</div>
+                    <div class="fs-4 fw-semibold">{{ $journals->count() }} Journal</div>
                   </div>
                 </div>
               </a>

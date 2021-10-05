@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Journal;
+use App\Models\User;
 
 class EditorController extends Controller
 {
@@ -13,7 +15,11 @@ class EditorController extends Controller
      */
     public function index()
     {
-        return view('editor.dashboard');
+        $journals = Journal::all();
+
+        $users = User::all();
+
+        return view ('editor.dashboard',compact('journals','users'));
     }
 
     /**
@@ -24,6 +30,31 @@ class EditorController extends Controller
     public function create()
     {
         //
+    }
+
+    public function viewProfile()
+    {
+        return view('editor.profile');
+    }
+
+    public function editProfile()
+    {
+        return view('editor.editprofile');
+    }
+
+    public function allJournal()
+    {
+        return view('editor.allJournals');
+    }
+
+    public function publishedJournal()
+    {
+        return view('editor.publishedJournals');
+    }
+
+    public function pendingJournal()
+    {
+        return view('editor.pendingJournals');
     }
 
     /**

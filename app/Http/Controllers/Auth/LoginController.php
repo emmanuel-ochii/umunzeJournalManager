@@ -37,6 +37,10 @@ class LoginController extends Controller
         }
         elseif( Auth()->user()->role == 2){
             return route('editor.dashboard');
+        }elseif(Auth()->user()->role == 3){
+            return route('home');
+        }else{
+            return route('login')->with('error','Invalid Role');
         }
     }
 
@@ -65,6 +69,11 @@ class LoginController extends Controller
             }
             elseif( auth()->user()->role == 2){
                 return redirect()->route('editor.dashboard');
+            }
+            elseif( auth()->user()->role == 3){
+                return redirect()->route('home');
+            }else{
+                return redirect()->route('login')->with('error','Invalid Role');
             }
 
         }

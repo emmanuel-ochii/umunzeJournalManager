@@ -6,17 +6,17 @@
       <main id="main-container">
 
         <!-- Hero -->
-        <div class="bg-image">
+        <div class="bg-imageHero">
           <div class="bg-black-75">
             <div class="content content-top content-full text-center">
               <h1 class="fw-bold text-white mt-5 mb-3">
-                Inspire a new generation of web developers
+                {{$journal->title}}
               </h1>
-              <h2 class="h3 fw-normal text-white-75 mb-5">Building a new web platform.</h2>
+              <h2 class="h3 fw-normal text-white-75 mb-5">{{$journal->abstract}}</h2>
               <p>
                 <a href="{{route('user.viewProfile')}}">
                     <span class="badge rounded-pill bg-primary fs-base px-3 py-2 me-2 m-1">
-                        <i class="fa fa-user-circle me-1"></i> by Lisa Smith
+                        <i class="fa fa-user-circle me-1"></i> {{$journal->author_name}}
                     </span>
                 </a>
                 <a href="">
@@ -46,7 +46,8 @@
                     </a>
                   </div>
                 </div>
-                <p>Potenti elit lectus augue eget iaculis vitae etiam, ullamcorper etiam bibendum ad feugiat magna accumsan dolor, nibh molestie cras hac ac ad massa, fusce ante convallis ante urna molestie vulputate bibendum tempus ante justo arcu erat accumsan adipiscing risus, libero condimentum venenatis sit nisl nisi ultricies sed, fames aliquet consectetur consequat nostra molestie neque nullam scelerisque neque commodo turpis quisque etiam egestas vulputate massa, curabitur tellus massa venenatis congue dolor enim integer luctus, nisi suscipit gravida fames quis vulputate nisi viverra luctus id leo dictum lorem, inceptos nibh orci.</p>
+                <p>{{$journal->abstract}}
+                    Potenti elit lectus augue eget iaculis vitae etiam, ullamcorper etiam bibendum ad feugiat magna accumsan dolor, nibh molestie cras hac ac ad massa, fusce ante convallis ante urna molestie vulputate bibendum tempus ante justo arcu erat accumsan adipiscing risus, libero condimentum venenatis sit nisl nisi ultricies sed, fames aliquet consectetur consequat nostra molestie neque nullam scelerisque neque commodo turpis quisque etiam egestas vulputate massa, curabitur tellus massa venenatis congue dolor enim integer luctus, nisi suscipit gravida fames quis vulputate nisi viverra luctus id leo dictum lorem, inceptos nibh orci.</p>
               </article>
               <!-- END Story -->
 

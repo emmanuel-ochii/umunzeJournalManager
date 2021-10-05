@@ -32,6 +32,7 @@
         <!-- Fonts and Dashmix framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
         <link rel="stylesheet" id="css-main" href="{{asset('/css/dashmix.min.css')}}">
+        @stack('styles')
         <link rel="stylesheet" href="{{asset('/css/added.css')}}">
 
         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
@@ -105,7 +106,7 @@
           <div class="content-side">
             <ul class="nav-main">
               <li class="nav-main-item">
-                <a class="nav-main-link active" href="dashboard.html">
+                <a class="nav-main-link active" href="{{route('editor.dashboard')}}">
                   <i class="nav-main-link-icon fa fa-hospital"></i>
                   <span class="nav-main-link-name">Overview</span>
                 </a>
@@ -118,18 +119,23 @@
                 </a>
                 <ul class="nav-main-submenu">
                   <li class="nav-main-item">
-                    <a class="nav-main-link" href="">
-                      <span class="nav-main-link-name">Edited</span>
+                    <a class="nav-main-link" href="{{route('editor.allJournal')}}">
+                      <span class="nav-main-link-name">All</span>
                     </a>
                   </li>
                   <li class="nav-main-item">
-                    <a class="nav-main-link" href="">
+                    <a class="nav-main-link" href="{{route('editor.publishedJournal')}}">
                       <span class="nav-main-link-name">Published</span>
                     </a>
                   </li>
                   <li class="nav-main-item">
-                    <a class="nav-main-link" href="">
+                    <a class="nav-main-link" href="{{route('editor.pendingJournal')}}">
                       <span class="nav-main-link-name">Pending</span>
+                    </a>
+                  </li>
+                  <li class="nav-main-item">
+                    <a class="nav-main-link" href="">
+                      <span class="nav-main-link-name">Rejected</span>
                     </a>
                   </li>
                 </ul>
@@ -154,13 +160,13 @@
               </li>
               <li class="nav-main-heading">Settings</li>
               <li class="nav-main-item">
-                <a class="nav-main-link" href="">
+                <a class="nav-main-link" href="{{route('editor.viewProfile')}}">
                   <i class="nav-main-link-icon fa fa-user-circle"></i>
                   <span class="nav-main-link-name">Profile Overview</span>
                 </a>
               </li>
               <li class="nav-main-item">
-                <a class="nav-main-link" href="">
+                <a class="nav-main-link" href="{{route('editor.editProfile')}}">
                   <i class="nav-main-link-icon fa fa-pencil-alt"></i>
                   <span class="nav-main-link-name">Edit Profile</span>
                 </a>
@@ -284,7 +290,7 @@
       </header>
       <!-- END Header -->
 
-      @yield('content');
+      @yield('content')
 
       <!-- Footer -->
       <footer id="page-footer">

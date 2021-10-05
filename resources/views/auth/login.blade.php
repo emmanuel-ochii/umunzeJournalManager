@@ -53,7 +53,9 @@
                 <!-- Header -->
                 <div class="mb-3 text-center">
                     <div class="col-md-12" style="display: block; margin-left: auto; margin-right: auto; width: 100%;">
-                        <img class="authLogo" src="{{asset('./media/logo/bida_logo.png')}}" alt="logo"  width="550"/>
+                        <a href="{{route('welcome')}}">
+                            <img class="authLogo" src="{{asset('./media/logo/bida_logo.png')}}" alt="logo"  width="550"/>
+                        </a>
                         <img class="authLogoMobile mb-2" src="{{asset('./media/logo/rsz_bida_logo.png')}}" alt="logo"  width="200"/>
                     </div>
                   <a class="link-fx fw-bold fs-1" href="{{route('login')}}">
@@ -70,7 +72,7 @@
                     @if( session('success'))
                         <div class="alert alert-danger show mb-2" role="alert">{{ session('success') }}</div>
                     @endif
-                    
+
                     @if (session('error'))
                     <div class="alert alert-danger show flex items-center mb-2" role="alert"> <i data-feather="alert-octagon" class="w-6 h-6 mr-2"></i>
                             {{ session('error') }}
@@ -109,9 +111,9 @@
                                 <a class="btn btn-sm btn-alt-secondary d-block d-lg-inline-block mb-1" href="{{ route('password.request') }}">
                                     <i class="fa fa-exclamation-triangle opacity-50 me-1"></i> Forgot password
                                 </a>
-                                {{-- <a class="btn btn-sm btn-alt-secondary d-block d-lg-inline-block mb-1" href="signup.html">
+                                <a class="btn btn-sm btn-alt-secondary d-block d-lg-inline-block mb-1" href="{{route('register')}}">
                                     <i class="fa fa-plus opacity-50 me-1"></i> New Account
-                                </a> --}}
+                                </a>
                             @endif
                         </p>
                       </div>

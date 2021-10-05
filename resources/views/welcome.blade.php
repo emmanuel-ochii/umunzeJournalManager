@@ -6,7 +6,7 @@
       <main id="main-container">
 
         <!-- Hero -->
-        <div class="bg-image">
+        <div class="bg-imageHero">
             <div class="bg-umunzeBrown">
               <div class="content content-full content-top">
                 <h1 class="py-5 text-white text-center">Welcome To Federal College of Education (Technical) Umunze Journal Manager</h1>
@@ -47,89 +47,48 @@
               <!-- END Story -->
 
               <!-- Story -->
+              @foreach ($journals as $journal)
               <div class="block block-rounded">
                 <div class="block-content p-0 overflow-hidden">
                   <div class="row g-0">
                     <div class="col-md-4 col-lg-5 overflow-hidden d-flex align-items-center">
                       <a href="{{route('user.viewJournal')}}">
-                        <img class="img-fluid img-link" src="{{asset('/media/photos/photo22.jpg')}}" alt="">
+                        <img class="img-fluid img-link" src="{{$journal->feature}}" alt="">{{$journal->feature}}
                       </a>
                     </div>
                     <div class="col-md-8 col-lg-7 d-flex align-items-center">
                       <div class="px-4 py-3">
                         <h4 class="mb-1">
-                          <a class="text-dark" href="{{route('user.viewJournal')}}">Learn to code</a>
+                            <a class="text-dark" href="{{ route('journal.show',$journal->id) }}">{{ $journal->title }}</a>
                         </h4>
                         <div class="fs-sm mb-2">
-                          <a href="be_pages_generic_profile.html">Ryan Flores</a> on March 13, 2019 · <em class="text-muted">12 min</em>
+                          <a href="be_pages_generic_profile.html">{{$journal->author_name}}</a> {{$journal->created_at}} <em class="text-muted">18 mins</em>
                         </div>
                         <p class="mb-0">
-                          Anam commodo turpis id lectus scelerisque vulputate. Integer sed dolor erat. Fusce erat ipsum, varius vel euismod sed, tristique et lectus justo amet.. <a href="{{route('user.viewJournal')}}">Read on</a>
+                            {{$journal->abstract}} <a href="{{route('user.viewJournal')}}">Read on</a>
                         </p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+              @endforeach
               <!-- END Story -->
 
-              <!-- Story -->
-              <div class="block block-rounded">
-                <div class="block-content p-0 overflow-hidden">
-                  <div class="row g-0">
-                    <div class="col-md-4 col-lg-5 overflow-hidden d-flex align-items-center">
-                      <a href="{{route('user.viewJournal')}}">
-                        <img class="img-fluid img-link" src="{{asset('/media/photos/photo25.jpg')}}" alt="">
-                      </a>
-                    </div>
-                    <div class="col-md-8 col-lg-7 d-flex align-items-center">
-                      <div class="px-4 py-3">
-                        <h4 class="mb-1">
-                          <a class="text-dark" href="{{route('user.viewJournal')}}">Travel &amp; Work</a>
-                        </h4>
-                        <div class="fs-sm mb-2">
-                          <a href="be_pages_generic_profile.html">Melissa Rice</a> on March 6, 2019 · <em class="text-muted">9 min</em>
-                        </div>
-                        <p class="mb-0">
-                          Anam commodo turpis id lectus scelerisque vulputate. Integer sed dolor erat. Fusce erat ipsum, varius vel euismod sed, tristique et lectus justo amet.. <a href="{{route('user.viewJournal')}}">Read on</a>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- END Story -->
-
-
+              {{-- <form action="{{ route('products.destroy',$product->id) }}" method="POST">
+                <a class="btn btn-info" href="{{ route('products.show',$product->id) }}">Show</a>
+                <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Edit</a>
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Delete</button>
+                </form> --}}
 
               <!-- Pagination -->
               <nav aria-label="Page navigation">
                 <ul class="pagination push">
-                  <li class="page-item active">
-                    <a class="page-link" href="javascript:void(0)">1</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:void(0)">2</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:void(0)">3</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:void(0)">4</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:void(0)">5</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:void(0)" aria-label="Next">
-                      <span aria-hidden="true">
-                        <i class="fa fa-angle-right"></i>
-                      </span>
-                      <span class="visually-hidden">Next</span>
-                    </a>
-                  </li>
+                    <li class="page-item">{!! $journals->links() !!}</li>
                 </ul>
-              </nav>
+            </nav>
               <!-- END Pagination -->
             </div>
 
@@ -174,7 +133,7 @@
                     </div>
                     <div class="row text-center">
                         <div class="col">
-                            <a  href="#" class="btn btn-outline-quick-links me-1 mb-3">
+                            <a  href="{{route('journals')}}" class="btn btn-outline-quick-links me-1 mb-3">
                                 <i class="fa fa-fw fa-swatchbook me-1"></i> Journals Listing
                               </a>
                         </div>
