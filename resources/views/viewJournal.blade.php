@@ -41,8 +41,8 @@
 
                 <div class="row g-sm items-push push img-fluid-100">
                   <div class="col-12 animated fadeIn">
-                    <a class="img-link img-link-simple img-link-zoom-in img-lightbox" href="{{asset('/media/photos/photo21@2x.jpg')}}">
-                      <img class="img-fluid" src="{{asset('/media/photos/photo21@2x.jpg')}}" alt="">
+                    <a class="img-link img-link-simple img-link-zoom-in img-lightbox" href="">
+                      <img class="img-fluid" src="/uploads/journals/img/{{$journal->featured_img}}" alt="">
                     </a>
                   </div>
                 </div>

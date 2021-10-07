@@ -46,20 +46,51 @@ class JournalController extends Controller
             'author_email' => 'required',
             'title' => 'required',
             'abstract' => 'required',
-            'journal' => 'required',
+            'journal' => 'nullable|mimes:pdf|max:1999',
             'institution' => 'required',
             'institution_email' => 'required',
             'affiliation' => 'required',
             'country' => 'required',
             'category' => 'required',
             'author' => 'required',
-            'featured_img' => 'required',
+            'featured_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'doi' => 'required',
             'issn' => 'required',
             ]);
 
-            Journal::create($request->all());
-            return redirect()->route('user.listJournal')->with('success','Journal created successfully.');
+            // $path = $request->file('image')->store('public/media/journals/img');
+
+            // $journal = new Journal;
+            // $journal->author_name = $request->author_name;
+            // $journal->author_email = $request->author_email;
+            // $journal->title = $request->title;
+            // $journal->abstract = $request->abstract;
+            // $journal->journal = $request->journal;
+            // $journal->institution = $request->institution;
+            // $journal->institution_email = $request->institution_email;
+            // $journal->affiliation = $request->affiliation;
+            // $journal->country = $request->country;
+            // $journal->author = $request->author;
+            // $journal->featured_img = $path;
+            // $journal->doi = $request->doi;
+            // $journal->issn = $request->issn;
+            // $journal->save();
+
+            $input = $request->all();
+
+            if ($featured_img = $request->file('featured_img')) {
+                $destinationPath = 'uploads/journals/img/';
+                $journalImg = date('YmdHis') . "." . $featured_img->getClientOriginalExtension();
+                $featured_img->move($destinationPath, $journalImg);
+                $input['featured_img'] = "$journalImg";
+            }
+
+            Journal::create($input);
+
+
+            // return redirect()->route('user.listJournal')->with('success','Journal created successfully.');  This should be user when i have created individual user journal listing
+
+            return redirect()->route('journals')->with('success','Journal created successfully.');
 
     }
 

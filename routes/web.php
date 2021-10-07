@@ -33,8 +33,8 @@ Route::group(['prefix'=>'/', 'middleware'=>['auth','preventBackHistory']], funct
     Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('uploadJournal','UserController@uploadJournal')->name('user.uploadJournal');
     Route::get('editProfile','UserController@editProfile')->name('user.editProfile');
-    Route::resource('journal', JournalController::class);
 });
+Route::resource('journal', JournalController::class);
 
 Route::get('/journals','JournalController@index')->name('journals');
 Route::get('/viewJournal','UserController@viewJournal')->name('user.viewJournal');

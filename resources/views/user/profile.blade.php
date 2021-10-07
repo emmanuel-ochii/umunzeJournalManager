@@ -109,7 +109,8 @@
       </div>
       <!-- END Cover Link Stories -->
       <div class="text-end">
-        <a href="{{route('user.listJournal')}}">
+        {{-- <a href="{{route('user.listJournal')}}"> This should be active when individual user journals has been created--}}
+        <a href="{{route('journals')}}">
             <button type="button" class="btn btn-alt-primary">
                 Check out more <i class="fa fa-arrow-right ms-1"></i>
             </button>

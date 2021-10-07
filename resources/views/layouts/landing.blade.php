@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -47,62 +47,8 @@
   </head>
   <body>
     <!-- Page Container -->
-    <!--
-      Available classes for #page-container:
 
-      GENERIC
-
-        'remember-theme'                            Remembers active color theme and dark mode between pages using localStorage when set through
-                                                    - Theme helper buttons [data-toggle="theme"],
-                                                    - Layout helper buttons [data-toggle="layout" data-action="dark_mode_[on/off/toggle]"]
-                                                    - ..and/or Dashmix.layout('dark_mode_[on/off/toggle]')
-
-      SIDEBAR & SIDE OVERLAY
-
-        'sidebar-r'                                 Right Sidebar and left Side Overlay (default is left Sidebar and right Side Overlay)
-        'sidebar-mini'                              Mini hoverable Sidebar (screen width > 991px)
-        'sidebar-o'                                 Visible Sidebar by default (screen width > 991px)
-        'sidebar-o-xs'                              Visible Sidebar by default (screen width < 992px)
-        'sidebar-dark'                              Dark themed sidebar
-
-        'side-overlay-hover'                        Hoverable Side Overlay (screen width > 991px)
-        'side-overlay-o'                            Visible Side Overlay by default
-
-        'enable-page-overlay'                       Enables a visible clickable Page Overlay (closes Side Overlay on click) when Side Overlay opens
-
-        'side-scroll'                               Enables custom scrolling on Sidebar and Side Overlay instead of native scrolling (screen width > 991px)
-
-      HEADER
-
-        ''                                          Static Header if no class is added
-        'page-header-fixed'                         Fixed Header
-
-
-      FOOTER
-
-        ''                                          Static Footer if no class is added
-        'page-footer-fixed'                         Fixed Footer (please have in mind that the footer has a specific height when is fixed)
-
-      HEADER STYLE
-
-        ''                                          Classic Header style if no class is added
-        'page-header-dark'                          Dark themed Header
-        'page-header-glass'                         Light themed Header with transparency by default
-                                                    (absolute position, perfect for light images underneath - solid light background on scroll if the Header is also set as fixed)
-        'page-header-glass page-header-dark'         Dark themed Header with transparency by default
-                                                    (absolute position, perfect for dark images underneath - solid dark background on scroll if the Header is also set as fixed)
-
-      MAIN CONTENT LAYOUT
-
-        ''                                          Full width Main Content if no class is added
-        'main-content-boxed'                        Full width Main Content with a specific maximum width (screen width > 1200px)
-        'main-content-narrow'                       Full width Main Content with a percentage width (screen width > 1200px)
-
-      DARK MODE
-
-        'sidebar-dark page-header-dark dark-mode'   Enable dark mode (light sidebar/header is not supported with dark mode)
-    -->
-    <div id="page-container" class=" enable-page-overlay side-scroll page-header-fixed page-header-dark page-header-glass main-content-narrow">
+    <div id="page-container" class="enable-page-overlay side-scroll page-header-fixed page-header-dark page-header-glass main-content-narrow" style="min-height: 0;">
 
         <!-- Header -->
         <header id="page-header">
@@ -123,11 +69,52 @@
             <div class="space-x-1">
               <!-- User Dropdown -->
               <div class="dropdown d-inline-block">
-                <button type="button" class="btn btn-umunze-green">
-                  <a href="{{route('login')}}" class="text-white"><i class="fa fa-fw fa-user d-sm-none"></i>
-                  <span class="d-none d-sm-inline-block">Login</span>
-                  <i class="fa fa-fw fa-sign-in-alt opacity-50 ms-1 d-none d-sm-inline-block"></i></a>
-                </button>
+                @guest
+                    @if (Route::has('login'))
+                        <button type="button" class="btn btn-umunze-green">
+                            <a href="{{route('login')}}" class="text-white"><i class="fa fa-fw fa-user d-sm-none"></i>
+                            <span class="d-none d-sm-inline-block">Login</span>
+                            <i class="fa fa-fw fa-sign-in-alt opacity-50 ms-1 d-none d-sm-inline-block"></i></a>
+                        </button>
+                    @endif
+                    @else
+                    <button type="button" class="btn btn-umunze-green" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a href="#" class="text-white"><i class="fa fa-fw fa-user d-sm-none"></i>
+                        <span class="d-none d-sm-inline-block">{{ Auth::user()->name }}</span>
+                        <i class="fa fa-fw fa-angle-down opacity-50 ms-1 d-none d-sm-inline-block"></i></a>
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="page-header-user-dropdown">
+                          <div class="bg-primary-dark rounded-top fw-semibold text-white text-center p-3">
+                            User Options
+                          </div>
+                          <div class="p-2">
+                            <a class="dropdown-item" href="{{route('user.viewProfile')}}">
+                              <i class="far fa-fw fa-user me-1"></i> Profile
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between" href="#">
+                              <span><i class="far fa-fw fa-envelope me-1"></i> Journals</span>
+                              <span class="badge bg-primary rounded-pill">3</span>
+                            </a>
+                            <div role="separator" class="dropdown-divider"></div>
+
+                            <!-- Toggle Side Overlay -->
+                            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                            <a class="dropdown-item" href="{{route('user.editProfile')}}" data-toggle="layout" data-action="side_overlay_toggle">
+                              <i class="far fa-fw fa-building me-1"></i> Settings
+                            </a>
+                            <!-- END Side Overlay -->
+
+                            <div role="separator" class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                              <i class="far fa-fw fa-arrow-alt-circle-left me-1"></i> Sign Out
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                              @csrf
+                          </form>
+                          </div>
+                        </div>
+                    </div>
+                @endguest
               </div>
               <!-- END User Dropdown -->
 

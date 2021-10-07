@@ -19,32 +19,6 @@
         <div class="content">
           <div class="row">
             <div class="col-xl-8">
-              <!-- Story -->
-              <div class="block block-rounded">
-                <div class="block-content p-0 overflow-hidden">
-                  <div class="row g-0">
-                    <div class="col-md-4 col-lg-5 overflow-hidden d-flex align-items-center">
-                      <a href="{{route('user.viewJournal')}}">
-                        <img class="img-fluid img-link" src="{{asset('/media/photos/photo19.jpg')}}" alt="">
-                      </a>
-                    </div>
-                    <div class="col-md-8 col-lg-7 d-flex align-items-center">
-                      <div class="px-4 py-3">
-                        <h4 class="mb-1">
-                          <a class="text-dark" href="{{route('user.viewJournal')}}">An adventure of a lifetime</a>
-                        </h4>
-                        <div class="fs-sm mb-2">
-                          <a href="be_pages_generic_profile.html">Laura Carr</a> on March 16, 2019 · <em class="text-muted">13 min</em>
-                        </div>
-                        <p class="mb-0">
-                          Anam commodo turpis id lectus scelerisque vulputate. Integer sed dolor erat. Fusce erat ipsum, varius vel euismod sed, tristique et lectus justo amet.. <a href="{{route('user.viewJournal')}}">Read on</a>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- END Story -->
 
               <!-- Story -->
               @foreach ($journals as $journal)
@@ -53,7 +27,7 @@
                   <div class="row g-0">
                     <div class="col-md-4 col-lg-5 overflow-hidden d-flex align-items-center">
                       <a href="{{route('user.viewJournal')}}">
-                        <img class="img-fluid img-link" src="{{$journal->feature}}" alt="">{{$journal->feature}}
+                        <img class="img-fluid img-link" src="/uploads/journals/img/{{$journal->featured_img}}" alt="">{{$journal->feature}}
                       </a>
                     </div>
                     <div class="col-md-8 col-lg-7 d-flex align-items-center">

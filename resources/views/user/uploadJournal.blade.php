@@ -38,7 +38,7 @@
           @endif
 
 
-          <form action="{{ route('journal.store') }}" method="POST">
+          <form action="{{ route('journal.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
           <!-- Settings -->
           <div id="side-content" class="d-none d-md-block push">
@@ -161,8 +161,8 @@
                 <div class="mb-3">
                     <select class="form-select" id="example-select" name="country">
                       <option selected="" class="text-grey">Select Country</option>
-                      <option value="1">Nigeria </option>
-                      <option value="2">Others </option>
+                      <option value="Nigeria">Nigeria </option>
+                      <option value="Others">Others </option>
                     </select>
                 </div>
                 <div class="mb-4">
