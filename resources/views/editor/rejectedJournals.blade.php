@@ -30,13 +30,15 @@
             <div class="block-content block-content-full">
               <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
               <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
-                <thead>
+                <thead class="bg-danger text-light">
                   <tr>
                     <th class="text-center">#</th>
                     <th>Journal Title</th>
                     <th class="d-none d-sm-table-cell">Authtor</th>
                     <th class="d-none d-sm-table-cell">Author Email</th>
                     <th style="width: 15%;">Uploaded Date</th>
+                    <th style="width: 15%;"> Date Rejected </th>
+                    <th style="width: 15%;"> Reason for Rejection </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -46,6 +48,8 @@
                     <td class="d-none d-sm-table-cell"><em class="text-muted">Margos Huklker</em> </td>
                     <td class="d-none d-sm-table-cell"> <em class="text-muted">@example.com</em> </td>
                     <td> <em class="text-muted">8 days ago</em> </td>
+                    <td> <em class="text-muted">8 days ago</em> </td>
+                    <td> <p class="text-muted">Lorem Ipsum text here...</p></td>
                   </tr>
                 </tbody>
               </table>

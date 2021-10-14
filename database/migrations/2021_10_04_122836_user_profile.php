@@ -17,9 +17,16 @@ class UserProfile extends Migration
             $table->id();
             $table->string('firstname');
             $table->string('lastname');
+            $table->string('middlename');
             $table->string('job_title');
             $table->string('email')->unique();
-            $table->string('profile_img')->unique();
+            $table->string('institution_email')->unique();
+            $table->string('institution_name');
+            $table->string('profile_img');
+            $table->string('social_linkedin')->unique();
+            $table->string('social_facebook')->unique();
+            $table->string('social_twitter')->unique();
+            $table->string('social_instagram')->unique();
 
             $table->timestamps();
         });

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Journal;
+use App\Models\User;
+use Auth;
+
 
 class UserController extends Controller
 {
@@ -63,17 +66,48 @@ class UserController extends Controller
     public function viewJournal(Journal $journal)
     {
         // return view('viewJournal');
+
         return view('viewJournal',compact('journal'));
     }
 
-    public function search()
+    public function search(Request $request)
     {
-        return view('search');
+        // return view('search');
+
+        $search =  $request->input('search');
+        if($search!=""){
+            $journals = Journal::where(function ($query) use ($search){
+                $query->where('title', 'like', '%'.$search.'%')
+                    ->orWhere('abstract', 'like', '%'.$search.'%');
+            })
+            ->paginate(2);
+            $journals->appends(['search' => $search]);
+        }
+        else{
+            $journals = Journal::paginate(3);
+        }
+
+        return view('search')->with('data',$journals);
+
+    }
+
+    public function searchParams($search)
+    {
+        echo $search;
     }
 
     public function viewProfile()
     {
-        return view('user.profile');
+        // $user_id = Auth::user()->id;
+        $users = User::all();
+
+        // return $users;
+
+        // exit();
+
+        return view('user.profile')->with('users');
+        // return view('user.profile',compact('users'));
+        // return view('user.profile');
     }
 
     public function listJournal()

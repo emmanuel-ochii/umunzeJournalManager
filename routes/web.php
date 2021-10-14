@@ -19,6 +19,14 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+
+/*
+    This is a reference for user route single
+    Route::get('file-upload', [FileUploadController::class, 'index']);
+    Route::post('store', [FileUploadController::class, 'store']);
+
+ */
+
 Route::get('/','UserController@index')->name('welcome');
 
 
@@ -39,6 +47,7 @@ Route::resource('journal', JournalController::class);
 Route::get('/journals','JournalController@index')->name('journals');
 Route::get('/viewJournal','UserController@viewJournal')->name('user.viewJournal');
 Route::get('/search','UserController@search')->name('user.search');
+Route::get('/searchParam/{search}','UserController@searchParam');
 Route::get('/viewProfile','UserController@viewProfile')->name('user.viewProfile');
 // Route::get('/listJournal','UserController@listJournal')->name('user.listJournal');
 Route::get('/userJournals','UserController@userJournals')->name('user.userJournals');
@@ -57,6 +66,7 @@ Route::group(['prefix'=>'editor', 'middleware'=>['isEditorMiddleware','auth','pr
     Route::get('/allJournals','EditorController@allJournal')->name('editor.allJournal');
     Route::get('/publishedJournals','EditorController@publishedJournal')->name('editor.publishedJournal');
     Route::get('/pendingJournals','EditorController@pendingJournal')->name('editor.pendingJournal');
+    Route::get('/rejectedJournals','EditorController@rejectedJournal')->name('editor.rejectedJournal');
 
 
 });

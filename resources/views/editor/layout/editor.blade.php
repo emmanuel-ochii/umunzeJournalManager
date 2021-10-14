@@ -134,7 +134,7 @@
                     </a>
                   </li>
                   <li class="nav-main-item">
-                    <a class="nav-main-link" href="">
+                    <a class="nav-main-link" href="{{route('editor.rejectedJournal')}}">
                       <span class="nav-main-link-name">Rejected</span>
                     </a>
                   </li>

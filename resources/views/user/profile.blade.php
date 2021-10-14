@@ -14,7 +14,8 @@
             <a class="img-link" href="">
               <img class="img-avatar img-avatar96 img-avatar-thumb" src="{{asset('/media/avatars/avatar10.jpg')}}" alt="">
             </a>
-            <h1 class="fw-bold my-2 text-white">George Taylor</h1>
+            <h1 class="fw-bold my-2 text-white">{{ Auth::user()->name }}</h1>
+            {{-- <h1 class="fw-bold my-2 text-white">{{ $users->name }}</h1> --}}
             <h2 class="h4 fw-bold text-white-75">
               Senior Lecturer
             </h2>

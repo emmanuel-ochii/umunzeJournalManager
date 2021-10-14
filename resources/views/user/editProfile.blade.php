@@ -14,10 +14,8 @@
             <a class="img-link" href="">
               <img class="img-avatar img-avatar96 img-avatar-thumb" src="{{asset('/media/avatars/avatar10.jpg')}}" alt="">
             </a>
-            <h1 class="fw-bold my-2 text-white">George Taylor</h1>
-            <h2 class="h4 fw-bold text-white-75">
-              Senior Lecturer
-            </h2>
+            <h1 class="fw-bold my-2 text-white"> {{ Auth::user()->name }}</h1>
+            <h2 class="h4 fw-bold text-white-75"> Senior Lecturer </h2>
             <a href="">
                 <button type="button" class="btn btn-umunze-brown m-1"><i class="fab fa-fw fa-linkedin-in opacity-50 me-1"></i> </button>
             </a>
@@ -68,7 +66,7 @@
             </ul>
             <div class="block-content tab-content overflow-hidden">
               <div class="tab-pane fade fade-left show active" id="vitalInfo" role="tabpanel" aria-labelledby="btabs-animated-slideleft-home-tab">
-                <form class="row row-cols-lg-auto g-3 align-items-center" action="be_pages_projects_edit.html" method="POST" enctype="multipart/form-data" onsubmit="return false;">
+                <form class="row row-cols-lg-auto g-3 align-items-center" action="" method="POST" enctype="multipart/form-data" onsubmit="return false;">
                     <div class="col-lg-6 col-xl-6">
                         <div class="mb-4">
                           <label class="form-label" for="dm-profile-edit-name">First Name</label>
@@ -112,8 +110,31 @@
               </div>
 
               <div class="tab-pane fade fade-left" id="socialMedia" role="tabpanel" aria-labelledby="btabs-animated-slideleft-profile-tab">
-                <h4 class="fw-normal">Social Content</h4>
-                <p>Content slides in to the left..</p>
+                <form class="row row-cols-lg-auto g-3 align-items-center" action="" method="POST" enctype="multipart/form-data" onsubmit="return false;">
+                    <div class="col-lg-6 col-xl-6">
+                        <div class="mb-4">
+                          <label class="form-label" for="linkedin">LinkedIn</label>
+                          <input type="text" class="form-control" id="linkedin" name="linkedin" placeholder="Enter your link.." value=" ">
+                        </div>
+                        <div class="mb-4">
+                          <label class="form-label" for="facebook">Facebook Name</label>
+                          <input type="text" class="form-control" id="facebook" name="facebook" placeholder="Enter your link.." value=" ">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-6">
+                        <div class="mb-4">
+                            <label class="form-label" for="twitter">Twitter Name</label>
+                            <input type="text" class="form-control" id="twitter" name="twitter" placeholder="Enter your link.." value=" ">
+                          </div>
+                          <div class="mb-4">
+                            <label class="form-label" for="instagram">Instagram</label>
+                            <input type="text" class="form-control" id="instagram" name="instagram" placeholder="Enter your link.." value=" ">
+                          </div>
+                    </div>
+                    <div class="mb-4">
+                        <button type="submit" class="btn btn-umunze-green">Update</button>
+                    </div>
+                </form>
               </div>
 
               <div class="tab-pane fade fade-left" id="password" role="tabpanel" aria-labelledby="btabs-animated-slideleft-profile-tab">

@@ -19,7 +19,7 @@
                         <i class="fa fa-user-circle me-1"></i> {{$journal->author_name}}
                     </span>
                 </a>
-                <a href="">
+                <a href="/uploads/journals/img/{{$journal->journal}}">
                     <span class="badge rounded-pill bg-primary fs-base px-3 py-2 m-1">
                         <i class="fa fa-download me-1"></i> Download Journal
                     </span>

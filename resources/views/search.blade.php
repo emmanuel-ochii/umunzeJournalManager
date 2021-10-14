@@ -19,9 +19,10 @@
     <div class="content">
       <!-- Search -->
       <div class="p-3 bg-body-extra-light rounded push">
-        <form action="#" method="POST">
+        <form action="{{route('user.search')}}" method="get">
+            {{ csrf_field() }}
           <div class="input-group input-group-lg">
-            <input type="text" class="form-control form-control-alt" placeholder="Search..">
+            <input type="text" class="form-control form-control-alt" placeholder="Search.." name="search" required>
             <span class="input-group-text border-0 bg-body">
               <i class="fa fa-fw fa-search"></i>
             </span>
@@ -37,70 +38,31 @@
           <!-- Classic -->
           <div class="tab-pane fade show active" id="search-classic" role="tabpanel" aria-labelledby="search-classic-tab">
             <div class="fs-3 fw-semibold pt-2 pb-4 mb-4 text-center border-bottom">
-              <span class="text-primary fw-bold">Results found for</span>  <mark class="text-danger">examle</mark>
+              <span class="text-primary fw-bold">Results found for</span> <mark class="text-danger">example</mark>
             </div>
             <div class="row">
-              <div class="col-lg-6">
-                <h4 class="h5 mb-1">
-                  <a href="javascript:void(0)">Bootstrap 4 UI Framework</a>
-                </h4>
-                <div class="fs-sm text-success mb-1">https://pixelcave.com/</div>
-                <p class="fs-sm text-muted">Tristique lobortis est ut metus lobortis tortor tincidunt himenaeos habitant quis dictumst proin odio sagittis purus mi, nec taciti himenaeos habitant quis in sit varius lorem quis dictumst proin odio sagittis..</p>
-              </div>
-              <div class="col-lg-6">
-                <h4 class="h5 mb-1">
-                  <a href="javascript:void(0)">Bootstrap 4 UI Framework</a>
-                </h4>
-                <div class="fs-sm text-success mb-1">https://pixelcave.com/</div>
-                <p class="fs-sm text-muted">Tristique lobortis est ut metus lobortis tortor tincidunt himenaeos habitant quis dictumst proin odio sagittis purus mi, nec taciti himenaeos habitant quis in sit varius lorem quis dictumst proin odio sagittis..</p>
-              </div>
-              <div class="col-lg-6">
-                <h4 class="h5 mb-1">
-                  <a href="javascript:void(0)">Bootstrap 4 UI Framework</a>
-                </h4>
-                <div class="fs-sm text-success mb-1">https://pixelcave.com/</div>
-                <p class="fs-sm text-muted">Tristique lobortis est ut metus lobortis tortor tincidunt himenaeos habitant quis dictumst proin odio sagittis purus mi, nec taciti himenaeos habitant quis in sit varius lorem quis dictumst proin odio sagittis..</p>
-              </div>
-              <div class="col-lg-6">
-                <h4 class="h5 mb-1">
-                  <a href="javascript:void(0)">Bootstrap 4 UI Framework</a>
-                </h4>
-                <div class="fs-sm text-success mb-1">https://pixelcave.com/</div>
-                <p class="fs-sm text-muted">Tristique lobortis est ut metus lobortis tortor tincidunt himenaeos habitant quis dictumst proin odio sagittis purus mi, nec taciti himenaeos habitant quis in sit varius lorem quis dictumst proin odio sagittis..</p>
-              </div>
+                @if($data->isNotEmpty())
+                    @foreach($data as $journal)
+                        <div class="col-lg-6">
+                            <h4 class="h5 mb-1"><a href="javascript:void(0)">{{$journal->title}}</a></h4>
+                            <div class="fs-sm text-success mb-1">{{$journal->author}}</div>
+                            <p class="fs-sm text-muted">{{$journal->abstract}}</p>
+                        </div>
+                    @endforeach
+                @else
+                    <div>
+                        <div class="col-lg-6">
+                            <h4 class="h5 mb-1">Sorry !!! Nothing found for your search</h4>
+                        </div>
+                    </div>
+                @endif
             </div>
+
             <!-- Pagination Begin -->
-            <nav aria-label="Classic Search Navigation">
-              <ul class="pagination">
-                <li class="page-item">
-                  <a class="page-link" href="javascript:void(0)" tabindex="-1" aria-label="Previous">
-                    <span aria-hidden="true">
-                      <i class="fa fa-angle-double-left"></i>
-                    </span>
-                    <span class="visually-hidden">Previous</span>
-                  </a>
-                </li>
-                <li class="page-item active">
-                  <a class="page-link" href="javascript:void(0)">1</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="javascript:void(0)">2</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="javascript:void(0)">3</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="javascript:void(0)">4</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="javascript:void(0)" aria-label="Next">
-                    <span aria-hidden="true">
-                      <i class="fa fa-angle-double-right"></i>
-                    </span>
-                    <span class="visually-hidden">Next</span>
-                  </a>
-                </li>
-              </ul>
+            <nav aria-label="Page navigation">
+                <ul class="pagination push">
+                    <li class="page-item">{{ $data->links() }}</li>
+                </ul>
             </nav>
             <!-- Pagination Begin -->
           </div>

@@ -57,6 +57,11 @@ class EditorController extends Controller
         return view('editor.pendingJournals');
     }
 
+    public function rejectedJournal()
+    {
+        return view('editor.rejectedJournals');
+    }
+
     /**
      * Store a newly created resource in storage.
      *

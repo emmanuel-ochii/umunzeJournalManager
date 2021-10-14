@@ -36,7 +36,7 @@
                             <a class="text-dark" href="{{ route('journal.show',$journal->id) }}">{{ $journal->title }}</a>
                         </h4>
                         <div class="fs-sm mb-2">
-                          <a href="be_pages_generic_profile.html">{{$journal->author_name}}</a> {{$journal->created_at}} <em class="text-muted">18 mins</em>
+                          <a href="">{{$journal->author_name}}</a> {{$journal->created_at}} <em class="text-muted">18 mins</em>
                         </div>
                         <p class="mb-0">
                             {{$journal->abstract}} <a href="{{route('user.viewJournal')}}">Read on</a>
@@ -74,8 +74,9 @@
                 </div>
                 <div class="block-content block-content-full">
                   <form action="{{route('user.search')}}" method="get">
+                    {{ csrf_field() }}
                     <div class="input-group">
-                      <input type="text" class="form-control form-control-alt" placeholder="Type and hit enter..">
+                      <input type="text" class="form-control form-control-alt" placeholder="Type and hit enter.." name="search">
                       <button type="button" class="btn btn-umunze-brown">
                         <i class="fa fa-search"></i>
                       </button>

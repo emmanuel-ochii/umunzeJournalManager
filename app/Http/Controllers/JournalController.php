@@ -85,6 +85,13 @@ class JournalController extends Controller
                 $input['featured_img'] = "$journalImg";
             }
 
+            if ($journal = $request->file('journal')) {
+                $destinationPath = 'uploads/journals/pdf/';
+                $journalPdf = date('YmdHis') . "." . $journal->getClientOriginalExtension();
+                $journal->move($destinationPath, $journalPdf);
+                $input['journal'] = "$journalPdf";
+            }
+
             Journal::create($input);
 
 
