@@ -28,26 +28,33 @@
             </div>
         @endif
       <div class="row items-push">
-        @foreach ($journals as $journal)
-            <div class="col-lg-4">
-                <!-- Story #15 -->
-                <a class="block block-rounded block-link-pop h-100 mb-0" href="javascript:void(0)">
-                {{-- <img class="img-fluid" src="{{$journal->feature}}" alt="JournalImage"> --}}
-                <img class="img-fluid" src="/uploads/journals/img/{{$journal->featured_img}}" alt="JournalImage">
-                {{-- <img class="img-fluid" src="{{asset('/media/journals/photo4@2x.jpg')}}" alt="JournalImage"> --}}
-                <div class="block-content">
-                    <h4 class="mb-1">{{ $journal->title }}</h4>
-                    <p class="fs-sm">
-                    <span class="text-umunze-green mr-2">{{$journal->author}} </span>{{$journal->created_at}}
-                    </p>
-                    <p>
-                    {{$journal->abstract}}
-                    </p>
+        @if(count($journals) > 0)
+            @foreach ($journals as $journal)
+                <div class="col-lg-4">
+                    <!-- Story #15 -->
+                    {{-- <a class="block block-rounded block-link-pop h-100 mb-0" href="{{route('journal.show'.'/'.Str::slug($journal->title).'/'.$journal->title)}}"> --}}
+                    <a class="block block-rounded block-link-pop h-100 mb-0" href="{{url('journal/'.Str::slug($journal->title).'/'.$journal->id)}}">
+                    <img class="img-fluid" src="/uploads/journals/img/{{$journal->featured_img}}" alt="JournalImage">
+                    <div class="block-content">
+                        <h4 class="mb-1">{{ $journal->title }}</h4>
+                        <p class="fs-sm">
+                        <span class="text-umunze-green mr-2">{{$journal->author}} </span>{{$journal->created_at}}
+                        </p>
+                        <p>
+                        {{$journal->abstract}}
+                        </p>
+                    </div>
+                    </a>
+                    <!-- END Story #15 -->
                 </div>
-                </a>
-                <!-- END Story #15 -->
-            </div>
             @endforeach
+        @else
+            <div id="basic-alert" class="p-5">
+                <div class="preview">
+                    <div class="alert alert-dark show mb-2 text-center" role="alert">No Journal To Display</div>
+                </div>
+            </div>
+        @endif
       </div>
 
       <!-- END Cover Link Stories -->

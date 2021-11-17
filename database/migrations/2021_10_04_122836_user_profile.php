@@ -13,7 +13,7 @@ class UserProfile extends Migration
      */
     public function up()
     {
-        Schema::create('userProfile', function (Blueprint $table) {
+        Schema::create('user_profile', function (Blueprint $table) {
             $table->id();
             $table->string('firstname');
             $table->string('lastname');
@@ -27,7 +27,31 @@ class UserProfile extends Migration
             $table->string('social_facebook')->unique();
             $table->string('social_twitter')->unique();
             $table->string('social_instagram')->unique();
-
+            $table->string('mobile_number')->unique();
+            $table->string('home_address')->nullable();
+            $table->string('office_number')->unique();
+            $table->string('office_address')->nullable();
+            $table->string('qualification_1')->nullable();
+            $table->string('qualification_2')->nullable();
+            $table->string('qualification_3')->nullable();
+            $table->string('qualification_4')->nullable();
+            $table->string('institution_1');
+            $table->string('appointment_1');
+            $table->string('institution_2')->nullable();
+            $table->string('appointment_2')->nullable();
+            $table->string('interests')->nullable();
+            $table->string('ctr_1')->nullable();
+            $table->string('ctr_2')->nullable();
+            $table->string('ctr_3')->nullable();
+            $table->string('ctr_4')->nullable();
+            $table->string('ctr_5')->nullable();
+            $table->string('ctr_6')->nullable();
+            $table->string('publication_1')->nullable();
+            $table->string('publication_2')->nullable();
+            $table->string('publication_3')->nullable();
+            $table->string('publication_4')->nullable();
+            $table->string('publication_5')->nullable();
+            $table->string('publication_6')->nullable();
             $table->timestamps();
         });
     }
@@ -39,6 +63,6 @@ class UserProfile extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('userProfile');
+        Schema::dropIfExists('user_profile');
     }
 }

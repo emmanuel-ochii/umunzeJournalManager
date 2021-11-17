@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Journal Manager | Federal College of Education (Technical) Umunze </title>
+    <title>@yield('title', 'Journal Manager | Federal College of Education (Technical) Umunze')</title>
 
     <meta name="description" content="Journal Manager | Federal College of Education (Technical) Umunze">
     <meta name="author" content="pixelcave">
@@ -47,7 +47,7 @@
   <body>
     <!-- Page Container -->
 
-    <div id="page-container" class="enable-page-overlay side-scroll page-header-fixed page-header-dark page-header-glass main-content-narrow">
+    <div id="page-container" class="enable-page-overlay side-scroll page-header-fixed page-header-dark page-header-glass main-content-narrow" style="min-height: 0;">
       <!-- Header -->
       <header id="page-header">
         <!-- Header Content -->
@@ -67,11 +67,52 @@
           <div class="space-x-1">
             <!-- User Dropdown -->
             <div class="dropdown d-inline-block">
-              <button type="button" class="btn btn-umunze-green">
-                <a href="{{route('login')}}" class="text-white"><i class="fa fa-fw fa-user d-sm-none"></i>
-                <span class="d-none d-sm-inline-block">Login</span>
-                <i class="fa fa-fw fa-sign-in-alt opacity-50 ms-1 d-none d-sm-inline-block"></i></a>
-              </button>
+              @guest
+                  @if (Route::has('login'))
+                      <button type="button" class="btn btn-umunze-green">
+                          <a href="{{route('login')}}" class="text-white"><i class="fa fa-fw fa-user d-sm-none"></i>
+                          <span class="d-none d-sm-inline-block">Login</span>
+                          <i class="fa fa-fw fa-sign-in-alt opacity-50 ms-1 d-none d-sm-inline-block"></i></a>
+                      </button>
+                  @endif
+                  @else
+                  <button type="button" class="btn btn-umunze-green" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <a href="#" class="text-white"><i class="fa fa-fw fa-user d-sm-none"></i>
+                      <span class="d-none d-sm-inline-block">{{ Auth::user()->name }}</span>
+                      <i class="fa fa-fw fa-angle-down opacity-50 ms-1 d-none d-sm-inline-block"></i></a>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="page-header-user-dropdown">
+                        <div class="bg-primary-dark rounded-top fw-semibold text-white text-center p-3">
+                          User Options
+                        </div>
+                        <div class="p-2">
+                          <a class="dropdown-item" href="{{route('user.viewProfile')}}">
+                            <i class="far fa-fw fa-user me-1"></i> Profile
+                          </a>
+                          <a class="dropdown-item d-flex align-items-center justify-content-between" href="#">
+                            <span><i class="far fa-fw fa-envelope me-1"></i> Journals</span>
+                            <span class="badge bg-primary rounded-pill">3</span>
+                          </a>
+                          <div role="separator" class="dropdown-divider"></div>
+
+                          <!-- Toggle Side Overlay -->
+                          <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                          <a class="dropdown-item" href="{{route('user.editProfile')}}" data-toggle="layout" data-action="side_overlay_toggle">
+                            <i class="far fa-fw fa-building me-1"></i> Settings
+                          </a>
+                          <!-- END Side Overlay -->
+
+                          <div role="separator" class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="far fa-fw fa-arrow-alt-circle-left me-1"></i> Sign Out
+                          </a>
+                          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                        </div>
+                      </div>
+                  </div>
+              @endguest
             </div>
             <!-- END User Dropdown -->
 

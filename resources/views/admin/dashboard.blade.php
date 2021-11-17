@@ -1,5 +1,7 @@
 @extends('admin.layout.admin')
 
+@section('title',$title)
+
 @section('content')
 
       <!-- Main Container -->

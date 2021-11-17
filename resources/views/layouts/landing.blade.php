@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Journal Manager | Federal College of Education (Technical) Umunze </title>
+    <title>@yield('title', 'Journal Manager | Federal College of Education (Technical) Umunze')</title>
 
     <meta name="description" content="Journal Manager | Federal College of Education (Technical) Umunze">
     <meta name="author" content="pixelcave">
@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="{{asset('/js/plugins/select2/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('/js/plugins/dropzone/min/dropzone.min.css')}}">
     <link rel="stylesheet" href="{{asset('/js/plugins/simplemde/simplemde.min.css')}}">
+    @stack('links')
 
     <!-- Fonts and Dashmix framework -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">

@@ -40,7 +40,7 @@ class LoginController extends Controller
         }elseif(Auth()->user()->role == 3){
             return route('welcome');
         }else{
-            return route('login')->with('error','Invalid Role');
+            return view('auth.login')->with('error','Invalid Role');
         }
     }
 

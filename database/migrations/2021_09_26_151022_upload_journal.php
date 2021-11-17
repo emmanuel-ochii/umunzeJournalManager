@@ -13,12 +13,12 @@ class UploadJournal extends Migration
      */
     public function up()
     {
-        Schema::create('uploadJournal', function (Blueprint $table) {
+        Schema::create('journals', function (Blueprint $table) {
             $table->id();
             $table->string('author_name');
-            $table->string('author_email')->unique();
+            $table->string('author_email');
             $table->string('title');
-            $table->string('abstract');
+            $table->text('abstract');
             $table->string('journal');
             $table->string('doi');
             $table->string('issn');
@@ -27,8 +27,10 @@ class UploadJournal extends Migration
             $table->string('affiliation');
             $table->string('country');
             $table->string('category');
-            $table->string('author');
+            $table->boolean('status')->default(1);
+            $table->string('uploaded_by');
             $table->string('featured_img');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
@@ -40,6 +42,6 @@ class UploadJournal extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('uploadJournal');
+        Schema::dropIfExists('journals');
     }
 }

@@ -58,12 +58,9 @@
                       </div>
                     </div>
                     <div class="row mb-4">
-                      <label class="col-sm-4 col-form-label" for="author">Author</label>
+                      <label class="col-sm-4 col-form-label" for="author">Uploaded by</label>
                       <div class="col-sm-8">
-                        {{-- <select class="form-select" id="author" name="author" disabled>
-                          <option value="Admin" selected>Admin</option>
-                        </select> --}}
-                        <input type="text" name="author" id="author" />
+                        <input type="text" class="form-control py-3" name="uploaded_by" value="{{ !empty(Auth::user()->name) ? Auth::user()->name:'' }}" readonly>
                       </div>
                     </div>
                   </div>
@@ -76,18 +73,22 @@
                 <div id="settings-accordion_s2" class="collapse" role="tabpanel" aria-labelledby="settings-accordion_h2" data-bs-parent="#settings-accordion">
                   <div class="block-content block-content-full">
                     <div class="mb-4">
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-input" value="category" id="category" name="category">
-                        <label class="form-check-label" for="finance">Finace</label>
-                      </div>
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-input" value="1" id="academic" name="academic">
-                        <label class="form-check-label" for="academic">Academic</label>
-                      </div>
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-input" value="2" id="others" name="others">
-                        <label class="form-check-label" for="others">Others</label>
-                      </div>
+                        <div class="form-check">
+                            <select class="form-select" name="category">
+                                @if(count($categories) > 0)
+                                    @foreach ($categories as $category)
+                                                <option value="{{$category->id }}">{{$category->category_name}}</option>
+                                                {{-- <option value="{{$category->category_name }}">{{$category->category_name}}</option> --}}
+                                                @endforeach
+                                    @else
+                                    <div id="basic-alert" class="p-5">
+                                        <div class="preview">
+                                            <div class="alert alert-dark show mb-2 text-center" role="alert">No Category To Select. <span class="text-danger">Please Contact Admin.</span></div>
+                                        </div>
+                                    </div>
+                                @endif
+                            </select>
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -134,10 +135,10 @@
             <div class="block-content">
 
                 <div class="mb-3">
-                  <input type="text" class="form-control py-3" id="author_name" name="author_name" placeholder="Author Name...">
+                  <input type="text" class="form-control py-3" id="author_name" name="author_name" placeholder="Author Name">
                 </div>
                 <div class="mb-3">
-                    <input type="email" class="form-control py-3" id="author_email" name="author_email" placeholder="Email...">
+                    <input type="email" class="form-control py-3" name="author_email" value="{{ !empty(Auth::user()->email) ? Auth::user()->email:'' }}" readonly>
                 </div>
                 <div class="mb-3">
                     <input type="text" class="form-control py-3" id="title" name="title" placeholder="Title...">

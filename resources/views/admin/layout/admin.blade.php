@@ -7,7 +7,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Journal Manager | Federal College of Education (Technical) Umunze </title>
+        <title>@yield('title', 'Journal Manager | Federal College of Education (Technical) Umunze')</title>
 
         <meta name="description" content="Journal Manager | Federal College of Education (Technical) Umunze">
         <meta name="author" content="pixelcave">
@@ -32,6 +32,7 @@
         <!-- Fonts and Dashmix framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
         <link rel="stylesheet" id="css-main" href="{{asset('/css/dashmix.min.css')}}">
+        @stack('styles')
         <link rel="stylesheet" href="{{asset('/css/added.css')}}">
 
         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
@@ -105,7 +106,7 @@
           <div class="content-side">
             <ul class="nav-main">
               <li class="nav-main-item">
-                <a class="nav-main-link active" href="dashboard.html">
+                <a class="nav-main-link active" href="">
                   <i class="nav-main-link-icon fa fa-hospital"></i>
                   <span class="nav-main-link-name">Overview</span>
                 </a>
@@ -113,10 +114,33 @@
               <li class="nav-main-heading">Manage</li>
               <li class="nav-main-item">
                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                  <i class="nav-main-link-icon fa fa-folder"></i>
+                  <span class="nav-main-link-name">Categories</span>
+                </a>
+                <ul class="nav-main-submenu">
+                  <li class="nav-main-item">
+                    <a class="nav-main-link" href="{{route('category.create')}}">
+                      <span class="nav-main-link-name">Add New Category</span>
+                    </a>
+                  </li>
+                  <li class="nav-main-item">
+                    <a class="nav-main-link" href="{{route('category.index')}}">
+                      <span class="nav-main-link-name">All Categories</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-main-item">
+                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                   <i class="nav-main-link-icon fa fa-book-open"></i>
                   <span class="nav-main-link-name">Journals</span>
                 </a>
                 <ul class="nav-main-submenu">
+                  <li class="nav-main-item">
+                    <a class="nav-main-link" href="{{route('admin.allJournal')}}">
+                      <span class="nav-main-link-name">All Journals</span>
+                    </a>
+                  </li>
                   <li class="nav-main-item">
                     <a class="nav-main-link" href="">
                       <span class="nav-main-link-name">Edited</span>

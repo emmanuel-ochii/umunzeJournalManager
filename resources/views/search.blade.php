@@ -19,7 +19,7 @@
     <div class="content">
       <!-- Search -->
       <div class="p-3 bg-body-extra-light rounded push">
-        <form action="{{route('user.search')}}" method="get">
+        <form action="{{route('user.search','data')}}" method="get">
             {{ csrf_field() }}
           <div class="input-group input-group-lg">
             <input type="text" class="form-control form-control-alt" placeholder="Search.." name="search" required>
@@ -38,7 +38,8 @@
           <!-- Classic -->
           <div class="tab-pane fade show active" id="search-classic" role="tabpanel" aria-labelledby="search-classic-tab">
             <div class="fs-3 fw-semibold pt-2 pb-4 mb-4 text-center border-bottom">
-              <span class="text-primary fw-bold">Results found for</span> <mark class="text-danger">example</mark>
+              <span class="text-primary fw-bold">Results found for you </span>
+              <mark class="text-danger" style="text-transform: capitalize">{{$search}}</mark>
             </div>
             <div class="row">
                 @if($data->isNotEmpty())

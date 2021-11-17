@@ -17,10 +17,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        // return view('welcome');
-
-        // $journals = Journal::all()->toArray();
-        // return view('listJournal',compact('journals'));
 
         $journals = Journal::latest()->paginate(3);
         return view('welcome',compact('journals'))->with('i', (request()->input('page', 1) - 1) * 3);
@@ -82,18 +78,14 @@ class UserController extends Controller
             })
             ->paginate(2);
             $journals->appends(['search' => $search]);
+            // echo $search;
         }
         else{
             $journals = Journal::paginate(3);
         }
 
-        return view('search')->with('data',$journals);
+        return view('search')->with(['data' => $journals ,'search' =>$search]);
 
-    }
-
-    public function searchParams($search)
-    {
-        echo $search;
     }
 
     public function viewProfile()
@@ -112,7 +104,8 @@ class UserController extends Controller
 
     public function listJournal()
     {
-        return view('listJournal');
+        $journals = Journal::latest()->paginate(3);
+        return view('listJournal',compact('journals'))->with('i', (request()->input('page', 1) - 1) * 3);
     }
 
     public function editProfile()

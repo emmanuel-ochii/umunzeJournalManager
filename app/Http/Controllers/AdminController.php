@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Journal;
+use App\Models\Category;
+use App\Models\User;
+
 
 class AdminController extends Controller
 {
@@ -13,8 +17,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        return view('admin.dashboard',['title'=>'Admin Dashboard | Journal Manager | Federal College of Education (Technical) Umunze']);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -80,5 +85,38 @@ class AdminController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function viewProfile()
+    {
+        return view('admin.profile');
+    }
+
+    // JOURNAL
+    public function allJournalAdmin()
+    {
+        $journals=Journal::all();
+
+        return view('admin.allJournals',[
+            'journals' => $journals,
+            'title' => 'All Journals | Journal Manager | Federal College of Education (Technical) Umunze']);
+    }
+
+    public function pendingJournalAdmin()
+    {
+        $journals=Journal::all();
+
+        return view('admin.pendingJournals',[
+            'journals' => $journals,
+            'title' => 'Pending Journals | Journal Manager | Federal College of Education (Technical) Umunze']);
+    }
+
+    public function rejectedJournalAdmin()
+    {
+        $journals=Journal::all();
+
+        return view('admin.rejectedJournals',[
+            'journals' => $journals,
+            'title' => 'Rejected Journals | Journal Manager | Federal College of Education (Technical) Umunze']);
     }
 }
