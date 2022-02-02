@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Journal;
+use App\Models\Category;
 use App\Models\User;
 use Auth;
 
@@ -17,9 +18,9 @@ class UserController extends Controller
      */
     public function index()
     {
-
-        $journals = Journal::latest()->paginate(3);
-        return view('welcome',compact('journals'))->with('i', (request()->input('page', 1) - 1) * 3);
+        $journals = Journal::where('status', 1)->latest()->paginate(6);
+        $categories = Category::orderBy('id','desc')->get();
+        return view('welcome',compact('journals','categories'));
     }
 
     /**
@@ -61,7 +62,6 @@ class UserController extends Controller
 
     public function viewJournal(Journal $journal)
     {
-        // return view('viewJournal');
 
         return view('viewJournal',compact('journal'));
     }
@@ -104,8 +104,14 @@ class UserController extends Controller
 
     public function listJournal()
     {
-        $journals = Journal::latest()->paginate(3);
+        $journals = Journal::where('status', 1)->latest()->paginate(9);
         return view('listJournal',compact('journals'))->with('i', (request()->input('page', 1) - 1) * 3);
+    }
+
+    public function listCategory()
+    {
+        $categories = Category::orderBy('id','desc')->get();
+        return view('listCategory',['categories' => $categories]);
     }
 
     public function editProfile()

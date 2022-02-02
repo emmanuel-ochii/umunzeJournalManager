@@ -40,7 +40,8 @@
                     @endif
 
 
-                    <form action="{{ route('journal.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('journal.update', $journal->id) }}" method="POST" enctype="multipart/form-data">
+
                         @csrf
                         <!-- Settings -->
                         <div id="side-content" class="d-none d-md-block push">
@@ -58,8 +59,14 @@
                                             <div class="row mb-4">
                                                 <label class="col-sm-4 col-form-label" for="visibility">Visibility</label>
                                                 <div class="col-sm-8">
-                                                    <select class="form-select" id="visibility" name="visibily" disabled>
-                                                        <option value="Public" selected>Public</option>
+                                                    <select class="form-select" name="visibily" disabled>
+                                                        <option value="{{ $journal->status }}" selected>
+                                                            @if ($journal->status == 1)
+                                                                Public
+                                                            @else
+                                                                Rejected
+                                                            @endif
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -119,6 +126,8 @@
                                             <!-- Dropzone (functionality is auto initialized by the plugin itself in js/plugins/dropzone/dropzone.min.js) -->
                                             <!-- For more info and examples you can check out http://www.dropzonejs.com/#usage -->
                                             {{-- <form class="dropzone" action="be_forms_plugins.html"></form> --}}
+                                            <img class="img-fluid mb-3"
+                                                src="/uploads/journals/img/{{ $journal->featured_img }}" alt="">
                                             <input class="form-control" type="file" name="featured_img" id="featured_img">
 
                                         </div>
@@ -153,47 +162,50 @@
 
                             <div class="mb-3">
                                 <input type="text" class="form-control py-3" id="author_name" name="author_name"
-                                    placeholder="Author Name">
+                                    value="{{ $journal->author_name }}">
                             </div>
                             <div class="mb-3">
                                 <input type="email" class="form-control py-3" name="author_email"
                                     value="{{ !empty(Auth::user()->email) ? Auth::user()->email : '' }}" readonly>
                             </div>
                             <div class="mb-3">
-                                <input type="text" class="form-control py-3" id="title" name="title" placeholder="Title...">
+                                <input type="text" class="form-control py-3" id="title" name="title"
+                                    value="{{ $journal->title }}">
                             </div>
                             <div class="mb-3">
                                 <!-- CKEditor (js-ckeditor id is initialized in Helpers.jsCkeditor()) -->
-                                <textarea class="js-simplemde" id="abstract" name="abstract"
-                                    placeholder="Enter Abstract Here..."></textarea>
+                                <textarea class="js-simplemde" name="abstract">{{ $journal->abstract }}</textarea>
                             </div>
                             <div class="mb-3">
-                                <input class="form-control" type="file" name="journal" id="journal">
+                                <iframe src="/uploads/journals/pdf/{{ $journal->journal }}"></iframe>
+                                <input class="form-control" type="file" name="journal">
                             </div>
                             <div class="mb-3">
-                                <input type="text" class="form-control py-3" id="institution" name="institution"
-                                    placeholder="Instituition...">
+                                <input type="text" class="form-control py-3" name="institution"
+                                    value="{{ $journal->institution }}">
                             </div>
                             <div class="mb-3">
                                 <input type="email" class="form-control py-3" id="institution_email"
-                                    name="institution_email" placeholder="Instituition Email...">
+                                    name="institution_email" value="{{ $journal->institution_email }}">
                             </div>
                             <div class="mb-3">
                                 <input type="text" class="form-control py-3" id="affiliation" name="affiliation"
-                                    placeholder="Affilation...">
+                                    value="{{ $journal->affiliation }}">
                             </div>
                             <div class="mb-3">
-                                <select class="form-select" id="example-select" name="country">
-                                    <option selected="" class="text-grey">Select Country</option>
+                                <select class="form-select" name="country">
+                                    <option selected="" value="{{$journal->country}}" class="text-grey">{{$journal->country}}</option>
                                     <option value="Nigeria">Nigeria </option>
                                     <option value="Others">Others </option>
                                 </select>
                             </div>
                             <div class="mb-4">
-                                <input type="text" class="form-control py-3" id="doi" name="doi" placeholder="DOI...">
+                                <input type="text" class="form-control py-3" id="doi" name="doi"
+                                    value="{{ $journal->doi }}">
                             </div>
                             <div class="mb-4">
-                                <input type="text" class="form-control py-3" id="issn" name="issn" placeholder="ISSN...">
+                                <input type="text" class="form-control py-3" id="issn" name="issn"
+                                    value="{{ $journal->issn }}">
                             </div>
 
 

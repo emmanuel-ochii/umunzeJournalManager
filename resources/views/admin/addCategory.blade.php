@@ -11,7 +11,7 @@
           <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center ribbon ribbon-success ribbon-bookmark">
                 <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">All Categories</h1>
-                <span class="ribbon-box">#4 </span>
+                <span class="ribbon-box"># {{ $categories->count() }} </span>
             </div>
           </div>
         </div>

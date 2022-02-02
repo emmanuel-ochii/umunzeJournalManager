@@ -12,15 +12,14 @@
                     <h1 class="fw-bold text-white mt-5 mb-3">
                         {{ $journal->title }}
                     </h1>
-                    <h2 class="h3 fw-normal text-white-75 mb-2">{{ Str::limit($journal->abstract, 50) }}</h2>
-                    <h2 class="h3 fw-normal text-white-75 mb-3">{{ $journal->category}}</h2>
+                    <h2  class="h3 fw-normal text-white-75 mb-3">{{ $journal->category->category_name}}</h2>
                     <p>
-                        <a href="{{ route('user.viewProfile') }}">
+                        {{-- <a href="{{ route('user.viewProfile') }}"> --}}
+                        <a href="#">
                             <span class="badge rounded-pill bg-primary fs-base px-3 py-2 me-2 m-1">
-                                <i class="fa fa-user-circle me-1"></i> {{ $journal->author_name }}
+                                <i class="fa fa-user-circle me-1"></i> By {{ $journal->author_name }}
                             </span>
                         </a>
-                        {{-- <a href="/uploads/journals/pdf/{{$journal->journal}}"> --}}
                         <a href="{{ url('/download', $journal->journal) }}">
                             <span class="badge rounded-pill bg-primary fs-base px-3 py-2 m-1">
                                 <i class="fa fa-download me-1"></i> Download Journal

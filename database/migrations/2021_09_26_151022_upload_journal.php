@@ -26,7 +26,7 @@ class UploadJournal extends Migration
             $table->string('institution_email');
             $table->string('affiliation');
             $table->string('country');
-            $table->string('category');
+            $table->string('cat_id');
             $table->boolean('status')->default(1);
             $table->string('uploaded_by');
             $table->string('featured_img');

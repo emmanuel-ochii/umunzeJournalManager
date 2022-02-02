@@ -10,6 +10,10 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = [
-        'category_name' ];
+         'category_name'
+    ];
+
+    function journal(){
+    	return $this->belongsTo('App\Models\Journal','id');
+    }
 }
- 

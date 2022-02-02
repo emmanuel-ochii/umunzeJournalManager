@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Journal;
 use App\Models\Category;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Artisan;
 
 class AdminController extends Controller
 {
@@ -17,7 +17,18 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard',['title'=>'Admin Dashboard | Journal Manager | Federal College of Education (Technical) Umunze']);
+        $journals = Journal::all();
+
+        $categories = Category::all();
+
+        $users = User::all();
+
+        return view('admin.dashboard', [
+            'title' => 'Admin Dashboard | Journal Manager | Federal College of Education (Technical) Umunze',
+            'journals' => $journals,
+            'categories' => $categories,
+            'users' => $users
+    ]);
     }
 
 
@@ -95,28 +106,40 @@ class AdminController extends Controller
     // JOURNAL
     public function allJournalAdmin()
     {
-        $journals=Journal::all();
+        $journals = Journal::all();
 
-        return view('admin.allJournals',[
+        return view('admin.allJournals', [
             'journals' => $journals,
-            'title' => 'All Journals | Journal Manager | Federal College of Education (Technical) Umunze']);
+            'title' => 'All Journals | Journal Manager | Federal College of Education (Technical) Umunze'
+        ]);
     }
 
     public function pendingJournalAdmin()
     {
-        $journals=Journal::all();
+        $journals = Journal::all();
 
-        return view('admin.pendingJournals',[
+        return view('admin.pendingJournals', [
             'journals' => $journals,
-            'title' => 'Pending Journals | Journal Manager | Federal College of Education (Technical) Umunze']);
+            'title' => 'Pending Journals | Journal Manager | Federal College of Education (Technical) Umunze'
+        ]);
     }
 
     public function rejectedJournalAdmin()
     {
-        $journals=Journal::all();
+        $journals = Journal::all();
 
-        return view('admin.rejectedJournals',[
+        return view('admin.rejectedJournals', [
             'journals' => $journals,
-            'title' => 'Rejected Journals | Journal Manager | Federal College of Education (Technical) Umunze']);
+            'title' => 'Rejected Journals | Journal Manager | Federal College of Education (Technical) Umunze'
+        ]);
     }
+    // public function optimize()
+    // {
+    //     Artisan::call('optimize');
+    // }
+
+    // public function clear()
+    // {
+    //     Artisan::call('optimize:clear');
+    // }
 }

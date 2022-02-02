@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\User;
+
 
 class ProfileController extends Controller
 {
@@ -13,7 +17,15 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = Auth::user()->id;
+
+        $profile = DB::table('users')->join('profiles','users.id','=','profiles.profile_id')->select('users.*','profiles.*')->where(['profiles.profile_id' => $user_id])->first();
+
+        // return $profile;
+        // return gettype($profile);
+        // exit();
+
+        return view('profile', ['profile' => $profile]);
     }
 
     /**

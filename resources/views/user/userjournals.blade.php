@@ -138,7 +138,7 @@
               <div class="options-overlay rounded bg-primary-dark-op">
                 <div class="options-overlay-content">
                   <div class="mb-3">
-                    <a class="btn btn-primary" href="{{route('user.viewJournal')}}">
+                    <a class="btn btn-primary" href="">
                       <i class="fa fa-eye opacity-50 me-1"></i> View
                     </a>
                   </div>

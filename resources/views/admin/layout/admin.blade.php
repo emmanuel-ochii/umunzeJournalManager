@@ -10,7 +10,7 @@
         <title>@yield('title', 'Journal Manager | Federal College of Education (Technical) Umunze')</title>
 
         <meta name="description" content="Journal Manager | Federal College of Education (Technical) Umunze">
-        <meta name="author" content="pixelcave">
+        <meta name="author" content="Tenece">
         <meta name="robots" content="noindex, nofollow">
 
         <!-- Open Graph Meta -->
@@ -49,7 +49,7 @@
         <div class="smini-visible-block">
           <div class="content-header bg-black-10">
             <!-- Logo -->
-            <a class="fw-semibold text-white tracking-wide" href="index.html">
+            <a class="fw-semibold text-white tracking-wide" href="{{route('admin.dashboard')}}">
               D<span class="opacity-75">x</span>
             </a>
             <!-- END Logo -->
@@ -61,7 +61,7 @@
         <div class="smini-hidden">
           <div class="content-header justify-content-lg-center">
             <!-- Logo -->
-            <a class="fw-semibold text-white tracking-wide" href="index.html">
+            <a class="fw-semibold text-white tracking-wide" href="{{route('admin.dashboard')}}">
               FCE<span class="opacity-75">Umunze</span>
               <span class="fw-normal">Journal</span>
             </a>

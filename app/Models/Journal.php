@@ -10,21 +10,15 @@ class Journal extends Model
     use HasFactory;
 
     protected $fillable = [
-        'author_name', 'author_email', 'title', 'abstract', 'journal', 'doi', 'issn', 'institution', 'institution_email', 'affiliation', 'country', 'category', 'author', 'featured_img', 'cat_id', 'user_id'
+        'author_name', 'author_email', 'title', 'abstract', 'journal', 'doi', 'issn', 'institution', 'institution_email', 'affiliation', 'country', 'cat_id', 'author', 'featured_img', 'user_id'
     ];
-
-    // public function user()
-    // {
-    //     return $this->belongsTo('App\User');
-    // }
 
     public function comments()
     {
-        return $this->hasMany('App\Models\Comment')->orderBy('id','desc');
+        return $this->hasMany('App\Models\Comment')->orderBy('id', 'desc');
     }
 
-    function category()
-    {
-        return $this->belongsTo('App\Models\Category', 'category');
+    function category(){
+    	return $this->belongsTo('App\Models\Category','cat_id');
     }
 }

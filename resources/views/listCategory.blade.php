@@ -10,7 +10,7 @@
     <div class="bg-imageHero">
         <div class="bg-umunzeBrown">
           <div class="content content-full content-top">
-            <h1 class="py-5 text-white text-center">Journal of Technical Education and Research Development (JOTERD)</h1>
+            <h1 class="py-5 text-white text-center">Welcome To Federal College of Education (Technical) Umunze Journal Manager</h1>
           </div>
         </div>
     </div>
@@ -20,7 +20,7 @@
     <div class="content content-full content-boxed">
       <!-- Latest Friends -->
       <h2 class="content-heading text-umunze-green">
-        <i class="si si-book-open me-1 text-dark"></i> All Journals Listing
+        <i class="si si-book-open me-1 text-dark"></i> All Category Listing
       </h2>
        @if ($message = Session::get('success'))
             <div class="alert alert-success">
@@ -28,20 +28,16 @@
             </div>
         @endif
       <div class="row items-push">
-        @if(count($journals) > 0)
-            @foreach ($journals as $journal)
+        @if(count($categories) > 0)
+            @foreach ($categories as $category)
                 <div class="col-lg-4">
                     <!-- Story #15 -->
-                    {{-- <a class="block block-rounded block-link-pop h-100 mb-0" href="{{route('journal.show'.'/'.Str::slug($journal->title).'/'.$journal->title)}}"> --}}
-                    <a class="block block-rounded block-link-pop h-100 mb-0" href="{{url('journal/'.Str::slug($journal->title).'/'.$journal->id)}}">
-                    <img class="img-fluid" src="/uploads/journals/img/{{$journal->featured_img}}" alt="JournalImage" style="height: 240px !important; width:100% !important" >
+                    <a class="block block-rounded block-link-pop h-100 mb-0" href="{{url('category/'.Str::slug($category->category_name).'/'.$category->id)}}">
+                    <img class="img-fluid" src="/uploads/journals/img/" alt="JournalImage">
                     <div class="block-content">
-                        <h4 class="mb-1">{{ $journal->title }}</h4>
+                        <h4 class="mb-1">{{ $category->title }}</h4>
                         <p class="fs-sm">
-                        <span class="text-umunze-green mr-2">{{$journal->author}} </span>{{$journal->created_at}}
-                        </p>
-                        <p>
-                        {{$journal->abstract}}
+                        <span class="text-umunze-green mr-2">{{$category->category_name}} </span>{{$category->created_at}}
                         </p>
                     </div>
                     </a>
@@ -51,7 +47,7 @@
         @else
             <div id="basic-alert" class="p-5">
                 <div class="preview">
-                    <div class="alert alert-dark show mb-2 text-center" role="alert">No Journal To Display</div>
+                    <div class="alert alert-dark show mb-2 text-center" role="alert">No Category To Display</div>
                 </div>
             </div>
         @endif
@@ -59,7 +55,7 @@
 
       <!-- END Cover Link Stories -->
       <div class="text float-right">
-        <span  class="">{!! $journals->links() !!} </span>
+        {{-- <span  class="">{!! $journals->links() !!} </span> --}}
         {{-- <button type="button" class="btn btn-alt-primary">
           Check out more <i class="fa fa-arrow-right ms-1"></i>
         </button> --}}
